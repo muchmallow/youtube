@@ -2,13 +2,14 @@
 import jwt_decode from "jwt-decode";
 import { authAPI } from "../api/api";
 
+const SET_IS_LOGGING = "login/SET_IS_LOGGING";
 const SET_USER_ID = "login/SET_USER_ID";
 const SET_USER_INFO = "login/SET_USER_INFO";
 const LOG_OUT = "login/LOG_OUT";
-const RESET_IS_AUTH = "login/RESET_IS_AUTH";
 
 const initialState = {
   isAuth: false,
+  isLogging: false,
   token: null,
   userId: null,
   decodedToken: {},
@@ -30,16 +31,16 @@ const loginReducer = (state = initialState, action) => {
         isAuth: true,
       };
     }
-    case RESET_IS_AUTH: {
-      return {
-        ...state,
-        isAuth: false
-      }
-    }
     case LOG_OUT: {
       return {
         ...initialState,
       };
+    }
+    case SET_IS_LOGGING: {
+      return {
+        ...state,
+        isLogging: true
+      }
     }
     default:
       return state;
@@ -57,12 +58,12 @@ const setUserInfo = (token, decodedToken) => ({
   decodedToken,
 });
 
-export const resetIsAuth = () => ({
-  type: RESET_IS_AUTH,
-});
-
 export const logOutInfo = () => ({
   type: LOG_OUT,
+});
+
+export const setIsLogging = () => ({
+  type: SET_IS_LOGGING
 });
 
 export const getAuthLink = userId => async dispatch => {
@@ -70,6 +71,7 @@ export const getAuthLink = userId => async dispatch => {
   try {
     await authAPI.getAuth(userId);
   } catch (error) {
+    await dispatch(setIsLogging());
     window.location.href = error.response.data.url;
   }
 };

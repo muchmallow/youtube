@@ -53,9 +53,12 @@ const useStyles = makeStyles(theme => ({
     height: 28,
     margin: 4,
   },
+  iconOk: {
+    color: "#31C7AE",
+  }
 }));
 
-const MenuHeader = () => {
+const MenuHeader = ({ altView, setAltView }) => {
   const classes = useStyles();
 
   return (
@@ -71,13 +74,13 @@ const MenuHeader = () => {
       <div className={classes.inputButtons}>
         <div className={classes.leftHeaderPart}>
           <IconButton className={classes.button}>
-            <AddCircleOutlineIcon />
+            <AddCircleOutlineIcon/>
           </IconButton>
           <IconButton className={classes.button}>
-            <DeleteIcon />
+            <DeleteIcon/>
           </IconButton>
           <IconButton className={classes.button}>
-            <LocalOfferOutlinedIcon />
+            <LocalOfferOutlinedIcon/>
           </IconButton>
           <Input
             className={classes.input}
@@ -86,18 +89,18 @@ const MenuHeader = () => {
             endAdornment={
               <InputAdornment position="end">
                 <IconButton className={classes.iconButton} aria-label="Search">
-                  <SearchIcon />
+                  <SearchIcon/>
                 </IconButton>
               </InputAdornment>
             }
           />
         </div>
         <div className={classes.rightHeaderPart}>
-          <IconButton className={classes.rightHeaderPartButton}>
-            <ViewModuleIcon />
+          <IconButton className={classes.rightHeaderPartButton} onClick={() => setAltView(false)}>
+            <ViewModuleIcon className={!altView && classes.iconOk}/>
           </IconButton>
-          <IconButton className={classes.rightHeaderPartButton}>
-            <ListOutlinedIcon />
+          <IconButton className={classes.rightHeaderPartButton} onClick={() => setAltView(true)}>
+            <ListOutlinedIcon className={altView && classes.iconOk}/>
           </IconButton>
         </div>
       </div>

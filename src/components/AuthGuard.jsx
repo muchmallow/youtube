@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import PropTypes from "prop-types";
@@ -25,33 +25,35 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const AuthGuard = ({ isAuth, token, getToken }) => {
+const AuthGuard = ({ isAuth, isLogging, getToken }) => {
   const classes = useStyles();
 
-  useEffect(() => {
+  if (isLogging) {
     getToken();
-  }, []);
+  } else {
+    return <Redirect to="/login"/>;
+  }
 
-  if (isAuth && token) {
-    return <Redirect to="/main" />;
+  if (isAuth) {
+    return <Redirect to="/main"/>;
   }
 
   return (
     <div className={classes.root}>
-      <ColorCircularProgress size={90} thickness={5} />
+      <ColorCircularProgress size={90} thickness={5}/>
     </div>
   );
 };
 
 AuthGuard.propTypes = {
   isAuth: PropTypes.bool.isRequired,
-  token: PropTypes.string,
+  isLogging: PropTypes.bool.isRequired,
   getToken: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
   isAuth: state.loginPage.isAuth,
-  token: state.loginPage.token,
+  isLogging: state.loginPage.isLogging,
 });
 
 export default connect(

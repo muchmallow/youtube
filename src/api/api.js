@@ -1,6 +1,6 @@
 import * as axios from "axios";
 import { load } from "redux-localstorage-simple";
-import { logOut } from "../reducers/mainReducer";
+import store from "../reducers/reduxStore";
 
 const instanceAuth = axios.create({
   baseURL: "http://localhost:3001/auth/",
@@ -87,8 +87,14 @@ instanceYoutube.interceptors.response.use(
   },
   error => {
     if (error.response.status === 401) {
-      logOut();
+      store.dispatch({
+        type: "login/LOG_OUT"
+      });
+      store.dispatch({
+        type: "main/LOG_OUT"
+      });
+      return Promise.reject(error.response.status);
     }
-    return Promise.reject(error);
+    return Promise.reject(error.response.status);
   },
 );

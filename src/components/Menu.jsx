@@ -90,11 +90,12 @@ const useStyles = makeStyles(theme => ({
 const Menu = ({ isAuth, getPlaylists, searchVideos }) => {
   const classes = useStyles();
   const theme = useTheme();
+  const [altView, setAltView] = React.useState(false);
   const [open, setOpen] = React.useState(false);
   useEffect(() => {
     getPlaylists();
     searchVideos("Apple");
-  }, [isAuth]);
+  }, []);
 
   if (!isAuth) {
     return <Redirect to="/login" />;
@@ -148,8 +149,8 @@ const Menu = ({ isAuth, getPlaylists, searchVideos }) => {
           })}
         >
           <div className={classes.mainHeader} />
-          <MenuHeader />
-          <MenuVideo />
+          <MenuHeader altView={altView} setAltView={setAltView}/>
+          <MenuVideo altView={altView}/>
         </main>
       </div>
     </div>

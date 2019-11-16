@@ -21,6 +21,7 @@ const useStyles = makeStyles(theme => ({
     position: "relative",
     width: drawerWidth,
     border: "none",
+    // borderRight: "1px solid rgba(60, 56, 56, 0.1)"
   },
   drawerHeader: {
     display: "flex",

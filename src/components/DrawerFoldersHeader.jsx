@@ -52,7 +52,7 @@ const DrawerFoldersHeader = ({
           <ShareIcon />
         </IconButton>
       </div>
-      <IconButton onClick={() => deletePlaylist(selectedPlaylist)}>
+      <IconButton onClick={() => deletePlaylist(selectedPlaylist)} disabled={selectedPlaylist === ""}>
         <DeleteIcon />
       </IconButton>
     </div>
