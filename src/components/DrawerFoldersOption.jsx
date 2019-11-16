@@ -16,11 +16,11 @@ const useStyles = makeStyles(() => ({
   btnsContainer: {
     display: "flex",
     flexDirection: "row",
-    justifyContent: "space-around",
+    justifyContent: "space-around"
   },
   btn: {
-    padding: "6px 35px 6px 35px",
-  },
+    padding: "6px 35px 6px 35px"
+  }
 }));
 
 const DrawerFoldersOption = ({ selected, onSubmit, type, text, title, label }) => {
@@ -34,7 +34,7 @@ const DrawerFoldersOption = ({ selected, onSubmit, type, text, title, label }) =
   return (
     <>
       <IconButton onClick={handleClick} disabled={type === "editPlaylist" && selected === ""}>
-        {typeof(selected) === "undefined" ? <AddCircleOutlineIcon /> : <EditIcon />}
+        {typeof (selected) === "undefined" ? <AddCircleOutlineIcon/> : <EditIcon/>}
       </IconButton>
       <Dialog open={open} onClose={handleClick} aria-labelledby={type}>
         <DialogTitle id={type}>{title}</DialogTitle>
@@ -54,12 +54,12 @@ const DrawerFoldersOption = ({ selected, onSubmit, type, text, title, label }) =
             }}
           >
             {({
-              values,
-              handleChange,
-              handleBlur,
-              handleSubmit,
-              isSubmitting,
-            }) => (
+                values,
+                handleChange,
+                handleBlur,
+                handleSubmit,
+                isSubmitting
+              }) => (
               <form onSubmit={handleSubmit}>
                 <TextField
                   className={classes.textField}
@@ -107,7 +107,7 @@ DrawerFoldersOption.propTypes = {
   type: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
-  label: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired
 };
 
 export default DrawerFoldersOption;

@@ -15,19 +15,19 @@ const useStyles = makeStyles(() => ({
     alignItems: "center",
     justifyContent: "space-between",
     width: "100%",
-    height: "49px",
+    height: "49px"
   },
   foldersHeaderLeft: {
-    margin: "0 0 0 4px",
-  },
+    margin: "0 0 0 4px"
+  }
 }));
 
 const DrawerFoldersHeader = ({
-  createPlaylist,
-  selectedPlaylist,
-  editPlaylist,
-  deletePlaylist,
-}) => {
+                               createPlaylist,
+                               selectedPlaylist,
+                               editPlaylist,
+                               deletePlaylist
+                             }) => {
   const classes = useStyles();
 
   return (
@@ -49,11 +49,11 @@ const DrawerFoldersHeader = ({
           label="New name of the playlist"
         />
         <IconButton>
-          <ShareIcon />
+          <ShareIcon/>
         </IconButton>
       </div>
       <IconButton onClick={() => deletePlaylist(selectedPlaylist)} disabled={selectedPlaylist === ""}>
-        <DeleteIcon />
+        <DeleteIcon/>
       </IconButton>
     </div>
   );
@@ -63,11 +63,11 @@ DrawerFoldersHeader.propTypes = {
   selectedPlaylist: PropTypes.string.isRequired,
   createPlaylist: PropTypes.func.isRequired,
   editPlaylist: PropTypes.func.isRequired,
-  deletePlaylist: PropTypes.func.isRequired,
-}
+  deletePlaylist: PropTypes.func.isRequired
+};
 
 const mapStateToProps = (state) => ({
-  selectedPlaylist: state.mainPage.selectedPlaylist,
+  selectedPlaylist: state.mainPage.selectedPlaylist
 });
 
 export default connect(mapStateToProps, {

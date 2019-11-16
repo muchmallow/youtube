@@ -3,11 +3,11 @@ import { load } from "redux-localstorage-simple";
 import store from "../reducers/reduxStore";
 
 const instanceAuth = axios.create({
-  baseURL: "http://localhost:3001/auth/",
+  baseURL: "http://localhost:3001/auth/"
 });
 
 const instanceYoutube = axios.create({
-  baseURL: "http://localhost:3001/youtube/",
+  baseURL: "http://localhost:3001/youtube/"
 });
 
 // eslint-disable-next-line import/prefer-default-export
@@ -17,7 +17,7 @@ export const authAPI = {
   },
   getToken(code) {
     return instanceAuth.post(`${code}`);
-  },
+  }
 };
 
 export const youtubeAPI = {
@@ -28,7 +28,7 @@ export const youtubeAPI = {
     part = "snippet",
     type = "",
     publishedAfter = new Date(1970).toISOString(),
-    order = "relevance",
+    order = "relevance"
   ) {
     const string = tags.map(tag => `##"${tag}"`).join("");
     return instanceYoutube.post(`search`, {
@@ -38,8 +38,8 @@ export const youtubeAPI = {
         q: `${query}${string}`,
         type,
         publishedAfter,
-        order,
-      },
+        order
+      }
     });
   },
   getPlaylists() {
@@ -56,23 +56,23 @@ export const youtubeAPI = {
   },
   deleteVideoFromPlaylist(playlistId, videoIds) {
     return instanceYoutube.delete(`playlists/${playlistId}/videos`, {
-      videoIds,
+      videoIds
     });
   },
   updatePlaylist(playlistId, title, description) {
     return instanceYoutube.post(`playlists/${playlistId}`, {
       title,
-      description,
+      description
     });
   },
   removePlaylist(playlistId) {
     return instanceYoutube.delete(`playlists/${playlistId}`);
-  },
+  }
 };
 
 instanceYoutube.interceptors.request.use(config => {
   const localStorage = load({
-    namespace: "endor",
+    namespace: "endor"
   });
   if (localStorage.loginPage.token) {
     // eslint-disable-next-line no-param-reassign
@@ -96,5 +96,5 @@ instanceYoutube.interceptors.response.use(
       return Promise.reject(error.response.status);
     }
     return Promise.reject(error.response.status);
-  },
+  }
 );

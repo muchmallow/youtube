@@ -22,14 +22,14 @@ const drawerWidth = 315;
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
-    display: "flex",
+    display: "flex"
   },
   wrapper: {
     maxWidth: "1440px",
     flexGrow: 1,
     display: "flex",
     margin: "0 auto",
-    position: "relative",
+    position: "relative"
   },
   appBar: {
     backgroundColor: "#3a8378",
@@ -37,36 +37,36 @@ const useStyles = makeStyles(theme => ({
     justifyContent: "center",
     transition: theme.transitions.create(["margin", "width"], {
       easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
+      duration: theme.transitions.duration.leavingScreen
+    })
   },
   appBarShift: {
     width: `calc(100% - ${drawerWidth}px)`,
     marginLeft: drawerWidth,
     transition: theme.transitions.create(["margin", "width"], {
       easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
+      duration: theme.transitions.duration.enteringScreen
+    })
   },
   title: {
     flexGrow: 1,
     display: "none",
     [theme.breakpoints.up("sm")]: {
-      display: "block",
-    },
+      display: "block"
+    }
   },
   menuButton: {
-    marginRight: theme.spacing(2),
+    marginRight: theme.spacing(2)
   },
   hide: {
-    display: "none",
+    display: "none"
   },
   mainHeader: {
     display: "flex",
     alignItems: "center",
     padding: theme.spacing(0, 1),
     ...theme.mixins.toolbar,
-    justifyContent: "flex-end",
+    justifyContent: "flex-end"
   },
   content: {
     flexGrow: 1,
@@ -74,17 +74,17 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: "#ffffff",
     transition: theme.transitions.create("margin", {
       easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
+      duration: theme.transitions.duration.leavingScreen
     }),
-    marginLeft: -drawerWidth,
+    marginLeft: -drawerWidth
   },
   contentShift: {
     transition: theme.transitions.create("margin", {
       easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
+      duration: theme.transitions.duration.enteringScreen
     }),
-    marginLeft: 0,
-  },
+    marginLeft: 0
+  }
 }));
 
 const Menu = ({ isAuth, getPlaylists, searchVideos }) => {
@@ -98,7 +98,7 @@ const Menu = ({ isAuth, getPlaylists, searchVideos }) => {
   }, []);
 
   if (!isAuth) {
-    return <Redirect to="/login" />;
+    return <Redirect to="/login"/>;
   }
 
   const handleClick = () => {
@@ -108,11 +108,11 @@ const Menu = ({ isAuth, getPlaylists, searchVideos }) => {
   return (
     <div className={classes.root}>
       <div className={classes.wrapper}>
-        <CssBaseline />
+        <CssBaseline/>
         <AppBar
           position="absolute"
           className={clsx(classes.appBar, {
-            [classes.appBarShift]: open,
+            [classes.appBarShift]: open
           })}
         >
           <Toolbar>
@@ -123,7 +123,7 @@ const Menu = ({ isAuth, getPlaylists, searchVideos }) => {
                 edge="start"
                 className={classes.menuButton}
               >
-                {theme.direction === "ltr" && <ChevronLeftIcon />}
+                {theme.direction === "ltr" && <ChevronLeftIcon/>}
               </IconButton>
             ) : (
               <IconButton
@@ -133,22 +133,22 @@ const Menu = ({ isAuth, getPlaylists, searchVideos }) => {
                 edge="start"
                 className={classes.menuButton}
               >
-                <MenuIcon />
+                <MenuIcon/>
               </IconButton>
             )}
             <Typography className={classes.title} variant="h6" noWrap>
               Logo
             </Typography>
-            <MenuSearch searchVideos={searchVideos} />
+            <MenuSearch searchVideos={searchVideos}/>
           </Toolbar>
         </AppBar>
-        <DrawerComponent open={open} />
+        <DrawerComponent open={open}/>
         <main
           className={clsx(classes.content, {
-            [classes.contentShift]: open,
+            [classes.contentShift]: open
           })}
         >
-          <div className={classes.mainHeader} />
+          <div className={classes.mainHeader}/>
           <MenuHeader altView={altView} setAltView={setAltView}/>
           <MenuVideo altView={altView}/>
         </main>
@@ -160,17 +160,17 @@ const Menu = ({ isAuth, getPlaylists, searchVideos }) => {
 Menu.propTypes = {
   isAuth: PropTypes.bool.isRequired,
   getPlaylists: PropTypes.func.isRequired,
-  searchVideos: PropTypes.func.isRequired,
+  searchVideos: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
-  isAuth: state.loginPage.isAuth,
+  isAuth: state.loginPage.isAuth
 });
 
 export default connect(
   mapStateToProps,
   {
     getPlaylists,
-    searchVideos,
-  },
+    searchVideos
+  }
 )(Menu);

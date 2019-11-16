@@ -12,7 +12,7 @@ import { Typography } from "@material-ui/core";
 import {
   setVideoSelected,
   setAllSelected,
-  setAllUnselected,
+  setAllUnselected
 } from "../reducers/mainReducer";
 import Video from "./Video";
 
@@ -23,20 +23,20 @@ const useStyles = makeStyles(theme => ({
     justifyContent: "center",
     overflow: "hidden",
     backgroundColor: theme.palette.background.paper,
-    margin: "0 0 5px 0",
+    margin: "0 0 5px 0"
   },
   gridList: {
     maxWidth: "100%",
-    margin: "0 auto",
+    margin: "0 auto"
   },
   iconOkAll: {
-    color: "#31C7AE",
+    color: "#31C7AE"
   },
   videoSelect: {
     display: "flex",
     flexDirection: "row",
     flexWrap: "nowrap",
-    alignItems: "center",
+    alignItems: "center"
   },
   // subheaderIcon: {
   //   color: "#010101",
@@ -48,8 +48,8 @@ const useStyles = makeStyles(theme => ({
     justifyContent: "space-between",
     width: "100%",
     padding: "0 12px 0 0",
-    color: "rgba(0, 0, 0, 0.87)",
-  },
+    color: "rgba(0, 0, 0, 0.87)"
+  }
 }));
 
 const MenuVideo = ({
@@ -57,7 +57,7 @@ const MenuVideo = ({
                      setVideoSelected,
                      setAllSelected,
                      setAllUnselected,
-                     altView,
+                     altView
                    }) => {
   const classes = useStyles();
 
@@ -126,11 +126,11 @@ MenuVideo.propTypes = {
   setVideoSelected: PropTypes.func.isRequired,
   setAllSelected: PropTypes.func.isRequired,
   setAllUnselected: PropTypes.func.isRequired,
-  altView: PropTypes.bool.isRequired,
+  altView: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = state => ({
-  videos: state.mainPage.videos,
+  videos: state.mainPage.videos
 });
 
 export default connect(
@@ -138,6 +138,6 @@ export default connect(
   {
     setVideoSelected,
     setAllSelected,
-    setAllUnselected,
-  },
+    setAllUnselected
+  }
 )(MenuVideo);

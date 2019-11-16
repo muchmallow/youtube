@@ -3,11 +3,11 @@ import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles(() => ({
   invalid: {
-    color: "red",
+    color: "red"
   },
   valid: {
-    color: "green",
-  },
+    color: "green"
+  }
 }));
 
 const ErrorsHandler = ({ touched, message }) => {

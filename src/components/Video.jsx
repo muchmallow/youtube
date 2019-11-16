@@ -19,30 +19,30 @@ const useStyles = makeStyles(theme => ({
     maxWidth: "264px",
     maxHeight: "180px",
     padding: 0,
-    margin: "0 0 5px 6px",
+    margin: "0 0 5px 6px"
   },
   img: {
     width: "264px",
     height: "180px",
-    cursor: "pointer",
+    cursor: "pointer"
   },
   videoBarRight: {
     display: "flex",
     flexDirection: "column",
     alignItems: "flex-end",
-    margin: "0 16px 0 0",
+    margin: "0 16px 0 0"
   },
   title: {
-    maxWidth: "190px",
+    maxWidth: "190px"
   },
   rootSubtitleHeight: {
-    height: "55px",
+    height: "55px"
   },
   icon: {
-    color: "rgba(255, 255, 255, 0.54)",
+    color: "rgba(255, 255, 255, 0.54)"
   },
   iconOk: {
-    color: "#31C7AE",
+    color: "#31C7AE"
   },
   listItemAlternative: {
     display: "flex",
@@ -56,21 +56,21 @@ const useStyles = makeStyles(theme => ({
   iconWrapper: {
     display: "flex",
     alignItems: "center",
-    padding: "0 0 10px 0",
+    padding: "0 0 10px 0"
   },
   iconAlternative: {
-    position: "relative",
+    position: "relative"
   },
   imgWrapper: {
     display: "flex",
     maxHeight: "64px",
     maxWidth: "93px",
     margin: "0 9px 10px 0",
-    cursor: "pointer",
+    cursor: "pointer"
   },
   imgAlternative: {
     height: "64px",
-    width: "93px",
+    width: "93px"
   },
   titleWrapper: {
     display: "flex",
@@ -79,7 +79,7 @@ const useStyles = makeStyles(theme => ({
     padding: "0 0 10px 0",
     cursor: "pointer",
     maxWidth: "191px",
-    textOverflow: "ellipsis",
+    textOverflow: "ellipsis"
   },
   titleAlternative: {
     fontWeight: 500,
@@ -90,7 +90,7 @@ const useStyles = makeStyles(theme => ({
     margin: 0,
     maxWidth: "188px",
     whiteSpace: "nowrap",
-    textOverflow: "ellipsis",
+    textOverflow: "ellipsis"
   },
   subtitleAlternative: {
     fontWeight: 600,
@@ -102,19 +102,19 @@ const useStyles = makeStyles(theme => ({
     color: "#000000",
     maxWidth: "188px",
     whiteSpace: "nowrap",
-    textOverflow: "ellipsis",
+    textOverflow: "ellipsis"
   },
   modal: {
     display: "flex",
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "center"
   },
   paper: {
     backgroundColor: theme.palette.background.paper,
     border: "1px solid #000",
     boxShadow: theme.shadows[5],
-    padding: 0,
-  },
+    padding: 0
+  }
 }));
 
 const Video = ({ id, title, subtitle, onSelect, selected, url, videoId, altView }) => {
@@ -132,8 +132,8 @@ const Video = ({ id, title, subtitle, onSelect, selected, url, videoId, altView 
   const opts = {
     minWidth: "100%",
     playerVars: {
-      autoplay: 1,
-    },
+      autoplay: 1
+    }
   };
 
   return !altView ? <>
@@ -146,7 +146,7 @@ const Video = ({ id, title, subtitle, onSelect, selected, url, videoId, altView 
       closeAfterTransition
       BackdropComponent={Backdrop}
       BackdropProps={{
-        timeout: 500,
+        timeout: 500
       }}
     >
       <Fade in={open}>
@@ -164,7 +164,7 @@ const Video = ({ id, title, subtitle, onSelect, selected, url, videoId, altView 
           titleWrapActionPosLeft: classes.videoBarRight,
           rootSubtitle: classes.rootSubtitleHeight,
           title: classes.title,
-          subtitle: classes.title,
+          subtitle: classes.title
         }}
         actionIcon={
           <IconButton
@@ -192,7 +192,7 @@ const Video = ({ id, title, subtitle, onSelect, selected, url, videoId, altView 
       closeAfterTransition
       BackdropComponent={Backdrop}
       BackdropProps={{
-        timeout: 500,
+        timeout: 500
       }}
     >
       <Fade in={open}>
@@ -224,12 +224,12 @@ Video.propTypes = {
   onSelect: PropTypes.func.isRequired,
   selected: PropTypes.bool.isRequired,
   url: PropTypes.string.isRequired,
-  altView: PropTypes.bool.isRequired,
+  altView: PropTypes.bool.isRequired
 };
 
 export default connect(
   null,
   {
-    setVideoSelected,
-  },
+    setVideoSelected
+  }
 )(Video);

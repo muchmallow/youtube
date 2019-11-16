@@ -12,35 +12,35 @@ import { searchVideos } from "../reducers/mainReducer";
 const useStyles = makeStyles(() => ({
   root: {
     display: "flex",
-    flexWrap: "wrap",
+    flexWrap: "wrap"
   },
   formControl: {
     margin: "8px 13px 16px 16px",
-    minWidth: 120,
+    minWidth: 120
   },
   selectEmpty: {
-    padding: "3px 0 0 0",
+    padding: "3px 0 0 0"
   },
   label: {
     fontWeight: "500",
     fontSize: "18px",
     color: "black",
-    margin: "0",
+    margin: "0"
   },
   disabled: {
-    color: "#D2CACA",
-  },
+    color: "#D2CACA"
+  }
 }));
 
 const DrawerFilters = ({
-  values,
-  selected,
-  onChange,
-  searchVideos,
-  query,
-  id,
-  placeholder,
-}) => {
+                         values,
+                         selected,
+                         onChange,
+                         searchVideos,
+                         query,
+                         id,
+                         placeholder
+                       }) => {
   const classes = useStyles();
 
   const handleChange = e => {
@@ -55,7 +55,7 @@ const DrawerFilters = ({
       </MenuItem>
     );
   });
-  
+
   return (
     <FormControl className={classes.formControl}>
       <InputLabel shrink htmlFor={id} className={classes.label}>
@@ -79,19 +79,19 @@ DrawerFilters.propTypes = {
   values: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string.isRequired,
-      value: PropTypes.string.isRequired,
-    }),
+      value: PropTypes.string.isRequired
+    })
   ),
   selected: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string)),
   onChange: PropTypes.func.isRequired,
   searchVideos: PropTypes.func.isRequired,
   query: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
-  placeholder: PropTypes.string.isRequired,
+  placeholder: PropTypes.string.isRequired
 };
 
 const mapStateToProps = (state) => ({
-  query: state.mainPage.query,
+  query: state.mainPage.query
 });
 
 export default connect(mapStateToProps, {

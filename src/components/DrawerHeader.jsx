@@ -14,31 +14,31 @@ const useStyles = makeStyles({
   root: {
     height: "143px",
     backgroundImage: `url(${drawerImage})`,
-    color: "white",
+    color: "white"
   },
   avatarAndExit: {
     width: "100%",
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
-    alignItems: "center",
+    alignItems: "center"
   },
   avatar: {
     margin: "16px 0 7px 16px",
     height: "64px",
-    width: "64px",
+    width: "64px"
   },
   iconButton: {
     position: "relative",
-    color: "white",
+    color: "white"
   },
   name: {
     margin: "0 0 0 16px",
-    fontWeight: 500,
+    fontWeight: 500
   },
   email: {
-    margin: "0 0 17px 16px",
-  },
+    margin: "0 0 17px 16px"
+  }
 });
 
 const DrawerHeader = ({ userInfo, logOut }) => {
@@ -57,9 +57,9 @@ const DrawerHeader = ({ userInfo, logOut }) => {
       className={classes.root}
     >
       <div className={classes.avatarAndExit}>
-        <Avatar className={classes.avatar} src={userInfo.picture} />
+        <Avatar className={classes.avatar} src={userInfo.picture}/>
         <IconButton className={classes.iconButton} onClick={handleClick}>
-          <ExitToAppIcon />
+          <ExitToAppIcon/>
         </IconButton>
       </div>
       <Typography variant="body2" className={classes.name}>
@@ -75,16 +75,16 @@ const DrawerHeader = ({ userInfo, logOut }) => {
 DrawerHeader.propTypes = {
   userInfo: PropTypes.shape({
     email: PropTypes.string.isRequired,
-    picture: PropTypes.string.isRequired,
+    picture: PropTypes.string.isRequired
   }),
-  logOut: PropTypes.func.isRequired,
+  logOut: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
-  userInfo: state.loginPage.decodedToken,
+  userInfo: state.loginPage.decodedToken
 });
 
 export default connect(
   mapStateToProps,
-  { logOut },
+  { logOut }
 )(DrawerHeader);

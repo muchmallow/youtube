@@ -19,25 +19,25 @@ const useStyles = makeStyles(theme => ({
   root: {
     width: "100%",
     maxWidth: 360,
-    backgroundColor: theme.palette.background.paper,
+    backgroundColor: theme.palette.background.paper
   },
   listItem: {
-    padding: "2px 16px 2px 16px",
+    padding: "2px 16px 2px 16px"
   },
   listItemNested: {
-    padding: "2px 16px 2px 72px",
+    padding: "2px 16px 2px 72px"
   },
   listItemSelected: {
     padding: "2px 16px 2px 72px",
     backgroundColor: "#60B2A5",
     "&:hover": {
-      backgroundColor: "#3a8378",
-    },
+      backgroundColor: "#3a8378"
+    }
   },
   listItemIcon: {
     minWidth: "24px",
     margin: "0 10px 0 0",
-    color: "#757575",
+    color: "#757575"
   },
   foldersHeader: {
     display: "flex",
@@ -45,19 +45,19 @@ const useStyles = makeStyles(theme => ({
     alignItems: "center",
     justifyContent: "space-between",
     width: "100%",
-    height: "49px",
+    height: "49px"
   },
   foldersHeaderLeft: {
-    margin: "0 0 0 4px",
-  },
+    margin: "0 0 0 4px"
+  }
 }));
 
 const DrawerFolders = ({
-  playlists,
-  unselectPlaylist,
-  selectedPlaylist,
-  getPlaylistVideos,
-}) => {
+                         playlists,
+                         unselectPlaylist,
+                         selectedPlaylist,
+                         getPlaylistVideos
+                       }) => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
@@ -79,24 +79,24 @@ const DrawerFolders = ({
         onClick={() => getPlaylistVideos(playlist.id)}
       >
         <ListItemIcon classes={{ root: classes.listItemIcon }}>
-          <FolderIcon />
+          <FolderIcon/>
         </ListItemIcon>
-        <ListItemText primary={playlist.snippet.title} />
+        <ListItemText primary={playlist.snippet.title}/>
       </ListItem>
     ));
   }
 
   return (
     <div onBlur={() => unselectPlaylist()}>
-      <DrawerFoldersHeader />
-      <Divider />
+      <DrawerFoldersHeader/>
+      <Divider/>
       <List dense>
         <ListItem button onClick={handleClick} className={classes.listItem}>
           <ListItemIcon classes={{ root: classes.listItemIcon }}>
-            <FolderIcon />
+            <FolderIcon/>
           </ListItemIcon>
-          <ListItemText primary="My Library" />
-          {open ? <ExpandLess /> : <ExpandMore />}
+          <ListItemText primary="My Library"/>
+          {open ? <ExpandLess/> : <ExpandMore/>}
         </ListItem>
         <Collapse in={open} timeout="auto" unmountOnExit>
           <List dense component="div" disablePadding>
@@ -133,12 +133,12 @@ DrawerFolders.propTypes = {
   playlists: PropTypes.arrayOf(PropTypes.any).isRequired,
   selectedPlaylist: PropTypes.string.isRequired,
   unselectPlaylist: PropTypes.func.isRequired,
-  getPlaylistVideos: PropTypes.func.isRequired,
-}
+  getPlaylistVideos: PropTypes.func.isRequired
+};
 
 const mapStateToProps = (state) => ({
   playlists: state.mainPage.playlists,
-  selectedPlaylist: state.mainPage.selectedPlaylist,
+  selectedPlaylist: state.mainPage.selectedPlaylist
 });
 
 export default connect(mapStateToProps, {

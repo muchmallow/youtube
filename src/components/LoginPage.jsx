@@ -14,13 +14,13 @@ const useStyles = makeStyles(() => ({
     display: "flex",
     flexDirection: "column",
     flexWrap: "wrap",
-    margin: "15% 20% 0 20%",
+    margin: "15% 20% 0 20%"
   },
   input: {
-    margin: "0 0 1% 0",
+    margin: "0 0 1% 0"
   },
   hasError: {
-    margin: "0 0 1% 0",
+    margin: "0 0 1% 0"
   },
   submit: {
     border: "none",
@@ -28,9 +28,9 @@ const useStyles = makeStyles(() => ({
     transition: "0.3s",
     "&:hover": {
       backgroundColor: "rgba(38, 186, 67, 0.75)",
-      color: "white",
-    },
-  },
+      color: "white"
+    }
+  }
 }));
 
 const validationSchema = Yup.object().shape({
@@ -38,14 +38,14 @@ const validationSchema = Yup.object().shape({
     .email("It should be a valid e-mail adress")
     .min(4, "Enter a correct e-mail")
     .max(255, "Must be shorter then 255 symbols")
-    .required("You must enter an e-mail"),
+    .required("You must enter an e-mail")
 });
 
 const LoginPage = ({ isAuth, getAuthLink }) => {
   const classes = useStyles();
 
   if (isAuth) {
-    return <Redirect to="/main" />;
+    return <Redirect to="/main"/>;
   }
 
   return (
@@ -60,14 +60,14 @@ const LoginPage = ({ isAuth, getAuthLink }) => {
       }}
     >
       {({
-        values,
-        errors,
-        touched,
-        handleChange,
-        handleBlur,
-        handleSubmit,
-        isSubmitting,
-      }) => (
+          values,
+          errors,
+          touched,
+          handleChange,
+          handleBlur,
+          handleSubmit,
+          isSubmitting
+        }) => (
         <form onSubmit={handleSubmit}>
           <div className={classes.container}>
             <label htmlFor="email">E-mail</label>
@@ -83,7 +83,7 @@ const LoginPage = ({ isAuth, getAuthLink }) => {
               onBlur={handleBlur}
               value={values.email}
             />
-            <ErrorsHandler touched={touched.email} message={errors.email} />
+            <ErrorsHandler touched={touched.email} message={errors.email}/>
             <button
               type="submit"
               className={classes.submit}
@@ -100,14 +100,14 @@ const LoginPage = ({ isAuth, getAuthLink }) => {
 
 LoginPage.propTypes = {
   isAuth: PropTypes.bool.isRequired,
-  getAuthLink: PropTypes.func.isRequired,
+  getAuthLink: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
-  isAuth: state.loginPage.isAuth,
+  isAuth: state.loginPage.isAuth
 });
 
 export default connect(
   mapStateToProps,
-  { getAuthLink },
+  { getAuthLink }
 )(LoginPage);

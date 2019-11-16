@@ -8,8 +8,8 @@ import { getToken } from "../reducers/loginReducer";
 
 const ColorCircularProgress = withStyles({
   root: {
-    color: "#00695c",
-  },
+    color: "#00695c"
+  }
 })(CircularProgress);
 
 const useStyles = makeStyles(theme => ({
@@ -18,11 +18,11 @@ const useStyles = makeStyles(theme => ({
     justifyContent: "center",
     alignItems: "center",
     minHeight: "100%",
-    flexGrow: 1,
+    flexGrow: 1
   },
   margin: {
-    margin: theme.spacing(1),
-  },
+    margin: theme.spacing(1)
+  }
 }));
 
 const AuthGuard = ({ isAuth, isLogging, getToken }) => {
@@ -48,15 +48,15 @@ const AuthGuard = ({ isAuth, isLogging, getToken }) => {
 AuthGuard.propTypes = {
   isAuth: PropTypes.bool.isRequired,
   isLogging: PropTypes.bool.isRequired,
-  getToken: PropTypes.func.isRequired,
+  getToken: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
   isAuth: state.loginPage.isAuth,
-  isLogging: state.loginPage.isLogging,
+  isLogging: state.loginPage.isLogging
 });
 
 export default connect(
   mapStateToProps,
-  { getToken },
+  { getToken }
 )(AuthGuard);

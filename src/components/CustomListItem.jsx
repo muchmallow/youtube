@@ -11,8 +11,8 @@ const useStyles = makeStyles(() => ({
   listItemIcon: {
     minWidth: "24px",
     margin: "0 10px 0 0",
-    color: "#757575",
-  },
+    color: "#757575"
+  }
 }));
 
 const CustomListItem = ({ button, classname, primary, type }) => {
@@ -20,11 +20,11 @@ const CustomListItem = ({ button, classname, primary, type }) => {
   return (
     <ListItem button={button} className={classname}>
       <ListItemIcon classes={{ root: classes.listItemIcon }}>
-        {type === "share" && <ShareIcon />}
-        {type === "unassigned" && <AssignmentLateIcon />}
-        {type === "encoding" && <CachedIcon />}
+        {type === "share" && <ShareIcon/>}
+        {type === "unassigned" && <AssignmentLateIcon/>}
+        {type === "encoding" && <CachedIcon/>}
       </ListItemIcon>
-      <ListItemText primary={primary} />
+      <ListItemText primary={primary}/>
     </ListItem>
   );
 };

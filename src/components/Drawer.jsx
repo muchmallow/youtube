@@ -15,12 +15,12 @@ const drawerWidth = 315;
 const useStyles = makeStyles(theme => ({
   drawer: {
     width: drawerWidth,
-    flexShrink: 0,
+    flexShrink: 0
   },
   drawerPaper: {
     position: "relative",
     width: drawerWidth,
-    border: "none",
+    border: "none"
     // borderRight: "1px solid rgba(60, 56, 56, 0.1)"
   },
   drawerHeader: {
@@ -30,29 +30,29 @@ const useStyles = makeStyles(theme => ({
     alignItems: "center",
     padding: theme.spacing(0, 0),
     ...theme.mixins.toolbar,
-    justifyContent: "center",
+    justifyContent: "center"
   },
   breaker: {
     backgroundColor: "#3a8378",
     height: "40px",
     color: "white",
-    padding: "12px 260px 12px 16px",
-  },
+    padding: "12px 260px 12px 16px"
+  }
 }));
 
 const DrawerComponent = ({
-  open,
-  unselectPlaylist,
-  setType,
-  setPublishedAfter,
-  setOrder,
-  searchType,
-  publishedAfter,
-  order,
-  searchTypeSelected,
-  publishedAfterSelected,
-  orderSelected,
-}) => {
+                           open,
+                           unselectPlaylist,
+                           setType,
+                           setPublishedAfter,
+                           setOrder,
+                           searchType,
+                           publishedAfter,
+                           order,
+                           searchTypeSelected,
+                           publishedAfterSelected,
+                           orderSelected
+                         }) => {
   const classes = useStyles();
 
   return (
@@ -62,12 +62,12 @@ const DrawerComponent = ({
       anchor="left"
       open={open}
       classes={{
-        paper: classes.drawerPaper,
+        paper: classes.drawerPaper
       }}
       onBlur={unselectPlaylist}
     >
       <div className={classes.drawerHeader}>
-        <DrawerHeader />
+        <DrawerHeader/>
       </div>
       <div className={classes.breaker}>
         <Typography variant="body2">Filters</Typography>
@@ -96,11 +96,11 @@ const DrawerComponent = ({
       <div className={classes.breaker}>
         <Typography variant="body2">Tags</Typography>
       </div>
-      <DrawerTags />
+      <DrawerTags/>
       <div className={classes.breaker}>
         <Typography variant="body2">Folders</Typography>
       </div>
-      <DrawerFolders />
+      <DrawerFolders/>
     </Drawer>
   );
 };
@@ -109,26 +109,26 @@ Drawer.propTypes = {
   searchType: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string.isRequired,
-      value: PropTypes.string.isRequired,
-    }),
+      value: PropTypes.string.isRequired
+    })
   ),
   publishedAfter: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string.isRequired,
-      value: PropTypes.string.isRequired,
-    }),
+      value: PropTypes.string.isRequired
+    })
   ),
   order: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string.isRequired,
-      value: PropTypes.string.isRequired,
-    }),
+      value: PropTypes.string.isRequired
+    })
   ),
   searchTypeSelected: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string)),
   publishedAfterSelected: PropTypes.arrayOf(
-    PropTypes.objectOf(PropTypes.string),
+    PropTypes.objectOf(PropTypes.string)
   ),
-  orderSelected: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string)), 
+  orderSelected: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string))
 };
 
 const mapStateToProps = (state) => ({
@@ -137,12 +137,12 @@ const mapStateToProps = (state) => ({
   order: state.mainPage.order,
   searchTypeSelected: state.mainPage.searchTypeSelected,
   publishedAfterSelected: state.mainPage.publishedAfterSelected,
-  orderSelected: state.mainPage.orderSelected,
+  orderSelected: state.mainPage.orderSelected
 });
 
 export default connect(mapStateToProps, {
   unselectPlaylist,
   setType,
   setPublishedAfter,
-  setOrder,
+  setOrder
 })(DrawerComponent);

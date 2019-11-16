@@ -17,44 +17,44 @@ const useStyles = makeStyles(theme => ({
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
-    color: "rgba(0, 0, 0, 0.87)",
+    color: "rgba(0, 0, 0, 0.87)"
   },
   inputButtons: {
     display: "flex",
     flexDirection: "row",
-    justifyContent: "space-between",
+    justifyContent: "space-between"
   },
   button: {
-    margin: "0 0 0 0",
+    margin: "0 0 0 0"
   },
   leftHeaderPart: {
     padding: "2px 4px",
     display: "flex",
     alignItems: "center",
-    width: 400,
+    width: 400
   },
   rightHeaderPart: {
     display: "flex",
-    alignItems: "center",
+    alignItems: "center"
   },
   rightHeaderPartButton: {
     position: "relative",
-    padding: "12px",
+    padding: "12px"
   },
   input: {
     minWidth: "388px",
     marginLeft: theme.spacing(1),
-    flex: 1,
+    flex: 1
   },
   iconButton: {
-    padding: 10,
+    padding: 10
   },
   divider: {
     height: 28,
-    margin: 4,
+    margin: 4
   },
   iconOk: {
-    color: "#31C7AE",
+    color: "#31C7AE"
   }
 }));
 

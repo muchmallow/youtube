@@ -32,75 +32,75 @@ const initialState = {
   searchType: [
     {
       name: "None",
-      value: "",
+      value: ""
     },
     {
       name: "Video",
-      value: "video",
+      value: "video"
     },
     {
       name: "Channel",
-      value: "channel",
+      value: "channel"
     },
     {
       name: "Playlist",
-      value: "playlist",
-    },
+      value: "playlist"
+    }
   ],
   searchTypeSelected: [
     {
       name: "None",
-      value: "",
-    },
+      value: ""
+    }
   ],
   publishedAfter: [
     {
       name: "None",
-      value: new Date(1970).toISOString(),
+      value: new Date(1970).toISOString()
     },
     {
       name: "Last Day",
-      value: lastDay,
+      value: lastDay
     },
     {
       name: "Last Week",
-      value: lastWeek,
+      value: lastWeek
     },
     {
       name: "Last Month",
-      value: lastMonth,
-    },
+      value: lastMonth
+    }
   ],
   publishedAfterSelected: [
     {
       name: "None",
-      value: new Date(1970).toISOString(),
-    },
+      value: new Date(1970).toISOString()
+    }
   ],
   order: [
     {
       name: "None",
-      value: "relevance",
+      value: "relevance"
     },
     {
       name: "Date",
-      value: "date",
+      value: "date"
     },
     {
       name: "Rating",
-      value: "rating",
+      value: "rating"
     },
     {
       name: "View Count",
-      value: "viewCount",
-    },
+      value: "viewCount"
+    }
   ],
   orderSelected: [
     {
       name: "None",
-      value: "relevance",
-    },
-  ],
+      value: "relevance"
+    }
+  ]
 };
 
 const mainReducer = (state = initialState, action) => {
@@ -108,13 +108,13 @@ const mainReducer = (state = initialState, action) => {
     case SET_PLAYLISTS: {
       return {
         ...state,
-        playlists: action.playlists,
+        playlists: action.playlists
       };
     }
     case SEARCH: {
       return {
         ...state,
-        videos: action.videos,
+        videos: action.videos
       };
     }
     case TOGGLE_SELECTED: {
@@ -125,7 +125,7 @@ const mainReducer = (state = initialState, action) => {
             return { ...video, selected: !video.selected };
           }
           return video;
-        }),
+        })
       };
     }
     case SELECT_ALL_VIDEOS: {
@@ -134,7 +134,7 @@ const mainReducer = (state = initialState, action) => {
         videos: state.videos.map(video => {
           return { ...video, selected: true };
         }),
-        selectAll: true,
+        selectAll: true
       };
     }
     case UNSELECT_ALL_VIDEOS: {
@@ -143,66 +143,66 @@ const mainReducer = (state = initialState, action) => {
         videos: state.videos.map(video => {
           return { ...video, selected: false };
         }),
-        selectAll: false,
+        selectAll: false
       };
     }
     case SELECT_PLAYLIST: {
       return {
         ...state,
-        selectedPlaylist: action.id,
+        selectedPlaylist: action.id
       };
     }
     case UNSELECT_PLAYLIST: {
       return {
         ...state,
-        selectedPlaylist: "",
+        selectedPlaylist: ""
       };
     }
     case ADD_TAG: {
       return {
         ...state,
-        tags: [action.tag, ...state.tags],
+        tags: [action.tag, ...state.tags]
       };
     }
     case DELETE_TAG: {
       return {
         ...state,
-        tags: state.tags.filter(tag => tag !== action.tag),
+        tags: state.tags.filter(tag => tag !== action.tag)
       };
     }
     case SET_QUERY: {
       return {
         ...state,
-        query: action.query,
+        query: action.query
       };
     }
     case LOG_OUT: {
       return {
-        ...initialState,
+        ...initialState
       };
     }
     case SET_SEARCH_TYPE: {
       return {
         ...state,
         searchTypeSelected: state.searchType.filter(
-          option => option.value === action.value,
-        ),
+          option => option.value === action.value
+        )
       };
     }
     case SET_PUBLISHED_AFTER: {
       return {
         ...state,
         publishedAfterSelected: state.publishedAfter.filter(
-          option => option.value === action.value,
-        ),
+          option => option.value === action.value
+        )
       };
     }
     case SET_SEARCH_ORDER: {
       return {
         ...state,
         orderSelected: state.order.filter(
-          option => option.value === action.value,
-        ),
+          option => option.value === action.value
+        )
       };
     }
     default:
@@ -212,68 +212,68 @@ const mainReducer = (state = initialState, action) => {
 
 const setPlaylists = playlists => ({
   type: SET_PLAYLISTS,
-  playlists,
+  playlists
 });
 
 const setVideos = videos => ({
   type: SEARCH,
-  videos,
+  videos
 });
 
 const setQuery = query => ({
   type: SET_QUERY,
-  query,
+  query
 });
 
 export const setType = value => ({
   type: SET_SEARCH_TYPE,
-  value,
+  value
 });
 
 export const setPublishedAfter = value => ({
   type: SET_PUBLISHED_AFTER,
-  value,
+  value
 });
 
 export const setOrder = value => ({
   type: SET_SEARCH_ORDER,
-  value,
+  value
 });
 
 export const selectPlaylist = id => ({
   type: SELECT_PLAYLIST,
-  id,
+  id
 });
 
 export const unselectPlaylist = () => ({
-  type: UNSELECT_PLAYLIST,
+  type: UNSELECT_PLAYLIST
 });
 
 export const setVideoSelected = etag => ({
   type: TOGGLE_SELECTED,
-  etag,
+  etag
 });
 
 export const setAllSelected = () => ({
-  type: SELECT_ALL_VIDEOS,
+  type: SELECT_ALL_VIDEOS
 });
 
 export const setAllUnselected = () => ({
-  type: UNSELECT_ALL_VIDEOS,
+  type: UNSELECT_ALL_VIDEOS
 });
 
 export const setNewTag = tag => ({
   type: ADD_TAG,
-  tag,
+  tag
 });
 
 export const deleteTag = tag => ({
   type: DELETE_TAG,
-  tag,
+  tag
 });
 
 const logOutData = () => ({
-  type: LOG_OUT,
+  type: LOG_OUT
 });
 
 export const logOut = () => dispatch => {
@@ -293,7 +293,7 @@ export const getPlaylists = () => async dispatch => {
 export const searchVideos = (
   query,
   maxResults = 25,
-  part = "snippet",
+  part = "snippet"
 ) => async (dispatch, getState) => {
   try {
     await dispatch(setQuery(query));
@@ -302,8 +302,8 @@ export const searchVideos = (
         tags,
         searchTypeSelected,
         publishedAfterSelected,
-        orderSelected,
-      },
+        orderSelected
+      }
     } = getState();
     const result = await youtubeAPI.searchVideos(
       query,
@@ -312,7 +312,7 @@ export const searchVideos = (
       part,
       searchTypeSelected[0].value,
       publishedAfterSelected[0].value,
-      orderSelected[0].value,
+      orderSelected[0].value
     );
     const videos = result.items.map(video => {
       return { ...video, selected: false };
@@ -325,7 +325,7 @@ export const searchVideos = (
 
 export const createPlaylist = (
   title,
-  description = "Created with test app",
+  description = "Created with test app"
 ) => async () => {
   try {
     await youtubeAPI.createPlaylist(title, description);
@@ -338,7 +338,7 @@ export const createPlaylist = (
 export const editPlaylist = (
   id,
   title,
-  description = "Created with test app",
+  description = "Created with test app"
 ) => async () => {
   try {
     await youtubeAPI.updatePlaylist(id, title, description);

@@ -12,7 +12,7 @@ const initialState = {
   isLogging: false,
   token: null,
   userId: null,
-  decodedToken: {},
+  decodedToken: {}
 };
 
 const loginReducer = (state = initialState, action) => {
@@ -20,7 +20,7 @@ const loginReducer = (state = initialState, action) => {
     case SET_USER_ID: {
       return {
         ...state,
-        userId: action.userId,
+        userId: action.userId
       };
     }
     case SET_USER_INFO: {
@@ -28,19 +28,19 @@ const loginReducer = (state = initialState, action) => {
         ...state,
         token: action.token,
         decodedToken: { ...action.decodedToken },
-        isAuth: true,
+        isAuth: true
       };
     }
     case LOG_OUT: {
       return {
-        ...initialState,
+        ...initialState
       };
     }
     case SET_IS_LOGGING: {
       return {
         ...state,
         isLogging: true
-      }
+      };
     }
     default:
       return state;
@@ -49,17 +49,17 @@ const loginReducer = (state = initialState, action) => {
 
 const setUserId = userId => ({
   type: SET_USER_ID,
-  userId,
+  userId
 });
 
 const setUserInfo = (token, decodedToken) => ({
   type: SET_USER_INFO,
   token,
-  decodedToken,
+  decodedToken
 });
 
 export const logOutInfo = () => ({
-  type: LOG_OUT,
+  type: LOG_OUT
 });
 
 export const setIsLogging = () => ({
