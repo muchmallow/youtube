@@ -30,10 +30,10 @@ const DrawerFoldersOption = ({ selected, onSubmit, type, text, title, label }) =
   const handleClick = () => {
     setOpen(!open);
   };
-  
+
   return (
     <>
-      <IconButton onClick={handleClick}>
+      <IconButton onClick={handleClick} disabled={type === "editPlaylist" && selected === ""}>
         {typeof(selected) === "undefined" ? <AddCircleOutlineIcon /> : <EditIcon />}
       </IconButton>
       <Dialog open={open} onClose={handleClick} aria-labelledby={type}>

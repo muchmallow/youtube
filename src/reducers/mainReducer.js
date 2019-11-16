@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 /* eslint-disable no-console */
 import { youtubeAPI } from "../api/api";
 import { logOutInfo } from "./loginReducer";
@@ -278,11 +279,15 @@ const logOutData = () => ({
 export const logOut = () => dispatch => {
   dispatch(logOutInfo());
   dispatch(logOutData());
-}
+};
 
 export const getPlaylists = () => async dispatch => {
+  try {
     const result = await youtubeAPI.getPlaylists();
     await dispatch(setPlaylists(result.items));
+  } catch (error) {
+    return error;
+  }
 };
 
 export const searchVideos = (
@@ -290,6 +295,7 @@ export const searchVideos = (
   maxResults = 25,
   part = "snippet",
 ) => async (dispatch, getState) => {
+  try {
     await dispatch(setQuery(query));
     const {
       mainPage: {
@@ -312,14 +318,21 @@ export const searchVideos = (
       return { ...video, selected: false };
     });
     await dispatch(setVideos(videos));
+  } catch (error) {
+    return error;
+  }
 };
 
 export const createPlaylist = (
   title,
   description = "Created with test app",
 ) => async () => {
+  try {
     await youtubeAPI.createPlaylist(title, description);
     getPlaylists();
+  } catch (error) {
+    return error;
+  }
 };
 
 export const editPlaylist = (
@@ -327,22 +340,34 @@ export const editPlaylist = (
   title,
   description = "Created with test app",
 ) => async () => {
+  try {
     await youtubeAPI.updatePlaylist(id, title, description);
     getPlaylists();
+  } catch (error) {
+    return error;
+  }
 };
 
 export const deletePlaylist = id => async () => {
+  try {
     await youtubeAPI.removePlaylist(id);
     getPlaylists();
+  } catch (error) {
+    return error;
+  }
 };
 
 export const getPlaylistVideos = id => async dispatch => {
+  try {
     await dispatch(selectPlaylist(id));
     const result = await youtubeAPI.getPlaylistVideos(id);
     const videos = result.items.map(video => {
       return { ...video, selected: false };
     });
     await dispatch(setVideos(videos));
+  } catch (error) {
+    return error;
+  }
 };
 
 export default mainReducer;

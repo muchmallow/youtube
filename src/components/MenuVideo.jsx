@@ -4,13 +4,17 @@ import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
 import GridList from "@material-ui/core/GridList";
 import GridListTile from "@material-ui/core/GridListTile";
-import GridListTileBar from "@material-ui/core/GridListTileBar";
 import ListSubheader from "@material-ui/core/ListSubheader";
 import IconButton from "@material-ui/core/IconButton";
 import CheckBoxOutlineBlankIcon from "@material-ui/icons/CheckBoxOutlineBlank";
 import CheckBoxIcon from "@material-ui/icons/CheckBox";
 import { Typography } from "@material-ui/core";
-import { setVideoSelected, setAllSelected, setAllUnselected } from "../reducers/mainReducer";
+import {
+  setVideoSelected,
+  setAllSelected,
+  setAllUnselected,
+} from "../reducers/mainReducer";
+import Video from "./Video";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -25,31 +29,8 @@ const useStyles = makeStyles(theme => ({
     maxWidth: "100%",
     margin: "0 auto",
   },
-  listItem: {
-    display: "flex",
-    maxWidth: "264px",
-    padding: "",
-  },
-  videoBarRight: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "flex-end",
-    margin: "0 16px 0 0",
-  },
-  title: {
-    maxWidth: "190px",
-  },
-  rootSubtitleHeight: {
-    height: "55px",
-  },
-  icon: {
-    color: "rgba(255, 255, 255, 0.54)",
-  },
-  iconOk: {
-    color: "#31C7AE",
-  },
   iconOkAll: {
-    color: "#1FA790",
+    color: "#31C7AE",
   },
   videoSelect: {
     display: "flex",
@@ -57,10 +38,10 @@ const useStyles = makeStyles(theme => ({
     flexWrap: "nowrap",
     alignItems: "center",
   },
-  subheaderIcon: {
-    color: "#010101",
-    opacity: "0.54",
-  },
+  // subheaderIcon: {
+  //   color: "#010101",
+  //   opacity: "0.54",
+  // },
   subheaderGutters: {
     display: "flex",
     flexDirection: "row",
@@ -72,11 +53,12 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const MenuVideo = ({
-  videos,
-  setVideoSelected,
-  setAllSelected,
-  setAllUnselected,
-}) => {
+                     videos,
+                     setVideoSelected,
+                     setAllSelected,
+                     setAllUnselected,
+                     altView,
+                   }) => {
   const classes = useStyles();
 
   const selectedItemsCount = videos.reduce((accum, video) => {
@@ -90,33 +72,17 @@ const MenuVideo = ({
     selectedItemsCount === videos.length && selectedItemsCount > 0;
 
   const listItems = videos.map(video => (
-    <GridListTile key={video.etag} className={classes.listItem}>
-      <img src={video.snippet.thumbnails.high.url} alt={video.snippet.title} />
-      <GridListTileBar
-        title={video.snippet.title}
-        subtitle={video.snippet.description}
-        classes={{
-          titleWrapActionPosLeft: classes.videoBarRight,
-          rootSubtitle: classes.rootSubtitleHeight,
-          title: classes.title,
-          subtitle: classes.title,
-        }}
-        actionIcon={
-          <IconButton
-            aria-label={`select ${video.snippet.title}`}
-            className={classes.icon}
-            onClick={() => setVideoSelected(video.etag)}
-          >
-            {!video.selected ? (
-              <CheckBoxOutlineBlankIcon />
-            ) : (
-              <CheckBoxIcon className={classes.iconOk} />
-            )}
-          </IconButton>
-        }
-        actionPosition="left"
-      />
-    </GridListTile>
+    <Video
+      key={video.etag}
+      id={video.etag}
+      url={video.snippet.thumbnails.high.url}
+      title={video.snippet.title}
+      subtitle={video.snippet.description}
+      onSelect={setVideoSelected}
+      selected={video.selected}
+      videoId={video.id.videoId}
+      altView={altView}
+    />
   ));
 
   return (
@@ -129,13 +95,12 @@ const MenuVideo = ({
           classes={{ tile: classes.videoSelect }}
         >
           <IconButton
-            className={classes.subheaderIcon}
             onClick={isAllSelected ? setAllUnselected : setAllSelected}
           >
             {isAllSelected ? (
-              <CheckBoxIcon className={classes.iconOkAll} />
+              <CheckBoxIcon className={classes.iconOkAll}/>
             ) : (
-              <CheckBoxOutlineBlankIcon />
+              <CheckBoxOutlineBlankIcon/>
             )}
           </IconButton>
           <ListSubheader
@@ -161,14 +126,18 @@ MenuVideo.propTypes = {
   setVideoSelected: PropTypes.func.isRequired,
   setAllSelected: PropTypes.func.isRequired,
   setAllUnselected: PropTypes.func.isRequired,
+  altView: PropTypes.bool.isRequired,
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   videos: state.mainPage.videos,
 });
 
-export default connect(mapStateToProps, {
-  setVideoSelected,
-  setAllSelected,
-  setAllUnselected
-})(MenuVideo);
+export default connect(
+  mapStateToProps,
+  {
+    setVideoSelected,
+    setAllSelected,
+    setAllUnselected,
+  },
+)(MenuVideo);
