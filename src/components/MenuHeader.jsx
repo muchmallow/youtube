@@ -42,7 +42,7 @@ const useStyles = makeStyles(theme => ({
     padding: "12px"
   },
   input: {
-    minWidth: "388px",
+    maxWidth: "388px",
     marginLeft: theme.spacing(1),
     flex: 1
   },
@@ -97,10 +97,10 @@ const MenuHeader = ({ altView, setAltView }) => {
         </div>
         <div className={classes.rightHeaderPart}>
           <IconButton className={classes.rightHeaderPartButton} onClick={() => setAltView(false)}>
-            <ViewModuleIcon className={!altView && classes.iconOk}/>
+            <ViewModuleIcon className={!altView ? classes.iconOk : ""}/>
           </IconButton>
           <IconButton className={classes.rightHeaderPartButton} onClick={() => setAltView(true)}>
-            <ListOutlinedIcon className={altView && classes.iconOk}/>
+            <ListOutlinedIcon className={altView ? classes.iconOk : ""}/>
           </IconButton>
         </div>
       </div>

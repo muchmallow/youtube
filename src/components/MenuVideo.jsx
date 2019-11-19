@@ -26,7 +26,7 @@ const useStyles = makeStyles(theme => ({
     margin: "0 0 5px 0"
   },
   gridList: {
-    maxWidth: "100%",
+    width: "100%",
     margin: "0 auto"
   },
   iconOkAll: {
@@ -37,6 +37,7 @@ const useStyles = makeStyles(theme => ({
     flexDirection: "row",
     flexWrap: "nowrap",
     alignItems: "center",
+    width: "100%",
   },
   // subheaderIcon: {
   //   color: "#010101",

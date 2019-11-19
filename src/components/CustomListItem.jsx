@@ -19,7 +19,7 @@ const CustomListItem = ({ button, classname, primary, type }) => {
   const classes = useStyles();
   return (
     <ListItem button={button} className={classname}>
-      <ListItemIcon classes={{ root: classes.listItemIcon }}>
+      <ListItemIcon className={classes.listItemIcon}>
         {type === "share" && <ShareIcon/>}
         {type === "unassigned" && <AssignmentLateIcon/>}
         {type === "encoding" && <CachedIcon/>}
