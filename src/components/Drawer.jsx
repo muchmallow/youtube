@@ -8,7 +8,7 @@ import DrawerHeader from "./DrawerHeader";
 import DrawerFilters from "./DrawerFilters";
 import DrawerTags from "./DrawerTags";
 import DrawerFolders from "./DrawerFolders";
-import { unselectPlaylist, setType, setPublishedAfter, setOrder } from "../reducers/mainReducer";
+import { setType, setPublishedAfter, setOrder } from "../reducers/mainReducer";
 
 const drawerWidth = 315;
 
@@ -20,7 +20,7 @@ const useStyles = makeStyles(theme => ({
   drawerPaper: {
     position: "relative",
     width: drawerWidth,
-    border: "none"
+    border: "none",
     // borderRight: "1px solid rgba(60, 56, 56, 0.1)"
   },
   drawerHeader: {
@@ -42,7 +42,6 @@ const useStyles = makeStyles(theme => ({
 
 const DrawerComponent = ({
                            open,
-                           unselectPlaylist,
                            setType,
                            setPublishedAfter,
                            setOrder,
@@ -64,7 +63,6 @@ const DrawerComponent = ({
       classes={{
         paper: classes.drawerPaper
       }}
-      onBlur={unselectPlaylist}
     >
       <div className={classes.drawerHeader}>
         <DrawerHeader/>
@@ -141,7 +139,6 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, {
-  unselectPlaylist,
   setType,
   setPublishedAfter,
   setOrder

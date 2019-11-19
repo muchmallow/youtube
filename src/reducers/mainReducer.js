@@ -326,10 +326,10 @@ export const searchVideos = (
 export const createPlaylist = (
   title,
   description = "Created with test app"
-) => async () => {
+) => async dispatch => {
   try {
     await youtubeAPI.createPlaylist(title, description);
-    getPlaylists();
+    await dispatch(getPlaylists());
   } catch (error) {
     return error;
   }
@@ -339,19 +339,20 @@ export const editPlaylist = (
   id,
   title,
   description = "Created with test app"
-) => async () => {
+) => async dispatch => {
   try {
     await youtubeAPI.updatePlaylist(id, title, description);
-    getPlaylists();
+    await dispatch(getPlaylists());
   } catch (error) {
     return error;
   }
 };
 
-export const deletePlaylist = id => async () => {
+export const deletePlaylist = id => async dispatch => {
   try {
     await youtubeAPI.removePlaylist(id);
-    getPlaylists();
+    await dispatch(getPlaylists());
+    await dispatch(unselectPlaylist());
   } catch (error) {
     return error;
   }

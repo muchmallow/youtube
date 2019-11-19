@@ -39,7 +39,7 @@ const loginReducer = (state = initialState, action) => {
     case SET_IS_LOGGING: {
       return {
         ...state,
-        isLogging: true
+        isLogging: !state.isLogging
       };
     }
     default:
@@ -69,7 +69,10 @@ export const setIsLogging = () => ({
 export const getAuthLink = userId => async dispatch => {
   dispatch(setUserId(userId));
   try {
-    await authAPI.getAuth(userId);
+    const result = await authAPI.getAuth(userId);
+    const decodedToken = jwt_decode(result.data);
+    await dispatch(setUserInfo(result.data, decodedToken));
+    window.location.pathname = "/main";
   } catch (error) {
     await dispatch(setIsLogging());
     window.location.href = error.response.data.url;

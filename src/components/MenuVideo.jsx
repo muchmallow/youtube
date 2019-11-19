@@ -36,7 +36,7 @@ const useStyles = makeStyles(theme => ({
     display: "flex",
     flexDirection: "row",
     flexWrap: "nowrap",
-    alignItems: "center"
+    alignItems: "center",
   },
   // subheaderIcon: {
   //   color: "#010101",

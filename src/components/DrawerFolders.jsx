@@ -13,7 +13,7 @@ import FolderIcon from "@material-ui/icons/Folder";
 import Divider from "@material-ui/core/Divider";
 import DrawerFoldersHeader from "./DrawerFoldersHeader";
 import CustomListItem from "./CustomListItem";
-import { unselectPlaylist, getPlaylistVideos } from "../reducers/mainReducer";
+import { getPlaylistVideos } from "../reducers/mainReducer";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -54,7 +54,6 @@ const useStyles = makeStyles(theme => ({
 
 const DrawerFolders = ({
                          playlists,
-                         unselectPlaylist,
                          selectedPlaylist,
                          getPlaylistVideos
                        }) => {
@@ -87,7 +86,7 @@ const DrawerFolders = ({
   }
 
   return (
-    <div onBlur={() => unselectPlaylist()}>
+    <div>
       <DrawerFoldersHeader/>
       <Divider/>
       <List dense>
@@ -132,7 +131,6 @@ const DrawerFolders = ({
 DrawerFolders.propTypes = {
   playlists: PropTypes.arrayOf(PropTypes.any).isRequired,
   selectedPlaylist: PropTypes.string.isRequired,
-  unselectPlaylist: PropTypes.func.isRequired,
   getPlaylistVideos: PropTypes.func.isRequired
 };
 
@@ -142,6 +140,5 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, {
-  unselectPlaylist,
   getPlaylistVideos
 })(DrawerFolders);

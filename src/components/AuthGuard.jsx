@@ -2,31 +2,14 @@ import React from "react";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import PropTypes from "prop-types";
-import { makeStyles, withStyles } from "@material-ui/core/styles";
-import CircularProgress from "@material-ui/core/CircularProgress";
 import { getToken } from "../reducers/loginReducer";
-
-const ColorCircularProgress = withStyles({
-  root: {
-    color: "#00695c"
-  }
-})(CircularProgress);
-
-const useStyles = makeStyles(theme => ({
-  root: {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    minHeight: "100%",
-    flexGrow: 1
-  },
-  margin: {
-    margin: theme.spacing(1)
-  }
-}));
+import Preloader from "./Preloader";
 
 const AuthGuard = ({ isAuth, isLogging, getToken }) => {
-  const classes = useStyles();
+
+  if (isAuth) {
+    return <Redirect to="/main"/>;
+  }
 
   if (isLogging) {
     getToken();
@@ -34,15 +17,7 @@ const AuthGuard = ({ isAuth, isLogging, getToken }) => {
     return <Redirect to="/login"/>;
   }
 
-  if (isAuth) {
-    return <Redirect to="/main"/>;
-  }
-
-  return (
-    <div className={classes.root}>
-      <ColorCircularProgress size={90} thickness={5}/>
-    </div>
-  );
+  return <Preloader/>;
 };
 
 AuthGuard.propTypes = {
